@@ -1,0 +1,46 @@
+---
+title: Nos produits — Maison Levain-Doré (démonstration)
+description: Pains, viennoiseries et pâtisseries de la Maison Levain-Doré, boulangerie fictive à Rennes.
+---
+
+<div class="entete-page">
+  <div class="conteneur">
+    <h1>Nos produits</h1>
+    <p class="chapeau">Pains, viennoiseries et pâtisseries, tout est fait sur place, tous les jours sauf le lundi.</p>
+    <ul class="ancres" aria-label="Aller à un rayon">
+      <li><a href="#pains">Les pains</a></li><li><a href="#viennoiseries">Les viennoiseries</a></li><li><a href="#patisseries">Les pâtisseries</a></li>
+    </ul>
+  </div>
+</div>
+<section>
+  <div class="conteneur">
+    
+  <div class="rayon" id="pains">
+    <div class="rayon-photo"><img src="assets/img/baguette.jpg" alt="Une baguette tranchée sur une planche, avec des épis de blé" width="933" height="1400" loading="lazy"></div>
+    <div>
+      <h2>Les pains</h2>
+      <p class="chapeau">Pétris le matin, levés lentement, cuits au four à sole.</p>
+      {{produits:pains}}
+    </div>
+  </div>
+    
+  <div class="rayon" id="viennoiseries">
+    <div class="rayon-photo"><img src="assets/img/viennoiseries.jpg" alt="Croissants et pains au chocolat sur une planche en bois" width="1400" height="1050" loading="lazy"></div>
+    <div>
+      <h2>Les viennoiseries</h2>
+      <p class="chapeau">Du beurre, du beurre et un peu de patience.</p>
+      {{produits:viennoiseries}}
+    </div>
+  </div>
+    
+  <div class="rayon" id="patisseries">
+    <div class="rayon-photo"><img src="assets/img/vitrine-patisseries.jpg" alt="Vitrine de pâtisseries : tartes aux fruits rouges et gâteaux au chocolat" width="933" height="1400" loading="lazy"></div>
+    <div>
+      <h2>Les pâtisseries</h2>
+      <p class="chapeau">Des classiques bretons et des tartes de saison.</p>
+      {{produits:patisseries}}
+    </div>
+  </div>
+    <p class="mention-prix">Prix indicatifs, inventés pour la démonstration. Les produits « du moment » changent chaque semaine.</p>
+  </div>
+</section>

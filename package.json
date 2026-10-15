@@ -1,0 +1,11 @@
+{
+  "name": "demo-boulangerie",
+  "private": true,
+  "type": "module",
+  "description": "Site de démonstration BALD : boulangerie fictive à Rennes",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node build.mjs && python3 -m http.server 8000 --directory dist"
+  },
+  "engines": { "node": ">=18" }
+}

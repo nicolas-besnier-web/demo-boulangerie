@@ -3,6 +3,25 @@ media:
   input: assets/img
   output: /assets/img
 content:
+  - name: site
+    label: Coordonnées et textes communs
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - { name: nom, label: Nom de la boulangerie, type: string }
+      - { name: slogan, label: Slogan, type: string }
+      - { name: metier, label: Sous-titre du logo, type: string }
+      - { name: rue, label: Rue, type: string }
+      - { name: codePostalVille, label: Code postal et ville, type: string }
+      - { name: ville, label: Ville, type: string }
+      - { name: telephone, label: Téléphone, type: string }
+      - { name: email, label: E-mail, type: string }
+      - { name: mentionAdresse, label: Mention courte après l'adresse, type: string }
+      - { name: mentionAdresseLongue, label: Mention longue (page Contact), type: string }
+      - { name: bandeau, label: Bandeau en haut de page, type: string }
+      - { name: piedDemo, label: Texte du bas de page, type: text }
+      - { name: indexation, label: Autoriser les moteurs de recherche (désactivé pour une démo), type: boolean }
   - name: horaires
     label: Horaires
     type: file

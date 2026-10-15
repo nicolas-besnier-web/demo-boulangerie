@@ -1,0 +1,59 @@
+---
+title: Contact et horaires — Maison Levain-Doré (démonstration)
+description: Horaires, coordonnées fictives et formulaire de démonstration de la Maison Levain-Doré.
+jsonld: oui
+---
+
+<div class="entete-page">
+  <div class="conteneur">
+    <h1>Contact et horaires</h1>
+    <p class="chapeau">Une question, une commande de gâteau, un doute sur le pain du jour ? Écrivez-nous ou passez la porte.</p>
+    {{statut}}
+  </div>
+</div>
+<section>
+  <div class="conteneur contact-grille">
+    <div>
+      <h2>Venir à la boulangerie</h2>
+      <dl class="coordonnees">
+        <dt>Adresse</dt>
+        <dd>{{site.rue}}<br>{{site.codePostalVille}}<br><span class="fictif">{{site.mentionAdresseLongue}}</span></dd>
+        <dt>Téléphone</dt>
+        <dd>{{site.telephone}} <span class="fictif">(numéro fictif)</span></dd>
+        <dt>E-mail</dt>
+        <dd>{{site.email}} <span class="fictif">(adresse fictive)</span></dd>
+      </dl>
+      <h2 style="margin:2.5rem 0 1rem">Horaires</h2>
+      <div id="horaires">{{horaires}}</div>
+    </div>
+    <div>
+      <div class="formulaire avis-sans-js"><h2 style="font-size:1.7rem;margin-bottom:1rem">Écrivez-nous</h2><p>Le formulaire a besoin de JavaScript. Écrivez-nous à {{site.email}} ou appelez le {{site.telephone}}.</p><p>Ceci est un site de démonstration : aucun message n'est envoyé.</p></div>
+      <form class="formulaire" id="formulaire-contact" novalidate>
+        <h2 style="font-size:1.7rem;margin-bottom:1.5rem">Écrivez-nous</h2>
+        <div class="champ">
+          <label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" required>
+        </div>
+        <div class="champ">
+          <label for="email">Votre e-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="champ">
+          <label for="sujet">Sujet</label>
+          <select id="sujet" name="sujet">
+            <option>Une question</option>
+            <option>Commander un gâteau</option>
+            <option>Commande pour un évènement</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="champ">
+          <label for="message">Votre message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button class="bouton" type="submit">Envoyer le message <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="message-demo" id="message-demo" role="status" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>

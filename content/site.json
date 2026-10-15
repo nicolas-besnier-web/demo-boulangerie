@@ -1,7 +1,22 @@
 {
   "nom": "Maison Levain-Doré",
   "slogan": "Du levain, de la farine, du temps.",
-  "adresse": "12 rue de la Mie-Dorée, 35000 Rennes (adresse fictive)",
+  "metier": "Boulangerie · Pâtisserie · Rennes",
+  "rue": "12 rue de la Mie-Dorée",
+  "codePostalVille": "35000 Rennes",
+  "ville": "Rennes",
   "telephone": "02 00 00 00 00",
-  "email": "contact@exemple.fr"
+  "email": "contact@exemple.fr",
+  "mentionAdresse": "(adresse fictive)",
+  "mentionAdresseLongue": "Adresse fictive : la boutique n'existe pas.",
+  "bandeau": "Projet de démonstration réalisé par BALD — entreprise fictive",
+  "piedDemo": "Projet de démonstration réalisé par BALD, création de sites web à Rennes — entreprise fictive. Ce site n'utilise aucun cookie.",
+  "indexation": false,
+  "navigation": [
+    { "fichier": "index.html", "label": "Accueil" },
+    { "fichier": "produits.html", "label": "Nos produits" },
+    { "fichier": "histoire.html", "label": "Notre histoire" },
+    { "fichier": "actualites.html", "label": "Actualités" },
+    { "fichier": "contact.html", "label": "Contact et horaires" }
+  ]
 }
