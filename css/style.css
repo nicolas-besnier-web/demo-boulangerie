@@ -323,3 +323,11 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   @keyframes tampon { from { opacity: 0; transform: rotate(-30deg) scale(0.6); } to { opacity: 1; transform: rotate(-9deg) scale(1); } }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+
+/* Texte secondaire sur fond sombre */
+.sombre .note-horaires, .sombre .horaires .ferme { color: var(--mie); }
+.site-pied { border-top: 1px solid rgba(243, 232, 208, 0.15); }
+.pied-bas { max-width: none; }
+@media (max-width: 30rem) { .marque small { display: none; } .marque { font-size: 1.25rem; } }
+.marque span { white-space: nowrap; }
+@media (max-width: 30rem) { .marque { font-size: 1.15rem; gap: 0.5rem; } }
