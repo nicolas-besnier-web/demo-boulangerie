@@ -1,0 +1,53 @@
+# Configuration Pages CMS (https://pagescms.org) — à brancher plus tard
+media:
+  input: assets/img
+  output: /assets/img
+content:
+  - name: horaires
+    label: Horaires
+    type: file
+    path: content/horaires.json
+    format: json
+    fields:
+      - { name: note, label: Note sous les horaires, type: text }
+      - name: jours
+        label: Jours
+        type: object
+        list: true
+        fields:
+          - { name: jour, label: Jour, type: string }
+          - { name: ouvert, label: Ouvert, type: boolean }
+          - { name: ouverture, label: Ouverture (HH:MM), type: string }
+          - { name: fermeture, label: Fermeture (HH:MM), type: string }
+  - name: produits
+    label: Produits
+    type: file
+    path: content/produits.json
+    format: json
+    fields:
+      - name: produits
+        label: Produits
+        type: object
+        list: true
+        fields:
+          - { name: categorie, label: Catégorie (pains, viennoiseries, patisseries), type: string }
+          - { name: nom, label: Nom, type: string }
+          - { name: description, label: Description, type: string }
+          - { name: prix, label: Prix en euros, type: number }
+          - { name: momentane, label: Produit du moment, type: boolean }
+  - name: actualites
+    label: Actualités
+    type: file
+    path: content/actualites.json
+    format: json
+    fields:
+      - name: actualites
+        label: Actualités
+        type: object
+        list: true
+        fields:
+          - { name: date, label: Date, type: date }
+          - { name: titre, label: Titre, type: string }
+          - { name: texte, label: Texte, type: text }
+          - { name: image, label: Image, type: image }
+          - { name: alt, label: Description de l'image, type: string }

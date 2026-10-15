@@ -1,0 +1,32 @@
+{
+  "actualites": [
+    {
+      "date": "2026-10-08",
+      "titre": "Le pain au sarrasin est de retour",
+      "texte": "Avec l'automne revient notre pain au sarrasin et aux noisettes. Il est cuit le mardi, le jeudi et le samedi matin. Venez tôt : il part vite.",
+      "image": "assets/img/pain-campagne.jpg",
+      "alt": "Un pain de campagne rond sur un linge clair"
+    },
+    {
+      "date": "2026-09-20",
+      "titre": "Journées du patrimoine : le fournil ouvre ses portes",
+      "texte": "Le samedi, de 10 h à 12 h, nous vous montrons comment on façonne une baguette. Gratuit, sur inscription au comptoir. Événement imaginaire, comme le reste de ce site de démonstration.",
+      "image": "assets/img/petrissage.jpg",
+      "alt": "Des mains pétrissent une pâte farinée"
+    },
+    {
+      "date": "2026-09-02",
+      "titre": "Nouveau : les tartes de saison",
+      "texte": "Poires, pommes, prunes : chaque semaine, une tarte différente selon l'arrivage du maraîcher voisin.",
+      "image": "assets/img/vitrine-patisseries.jpg",
+      "alt": "Vitrine de pâtisseries aux fruits rouges et au chocolat"
+    },
+    {
+      "date": "2026-07-14",
+      "titre": "Horaires d'été",
+      "texte": "Du 15 juillet au 15 août, nous fermons à 19 h et le lundi reste notre jour de repos. Bonnes vacances à tous.",
+      "image": "assets/img/vitrine-comptoir.jpg",
+      "alt": "Comptoir de boulangerie garni de viennoiseries"
+    }
+  ]
+}

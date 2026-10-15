@@ -1,0 +1,12 @@
+{
+  "note": "Fermé les jours fériés. Pensez à commander vos gâteaux 48 h à l'avance.",
+  "jours": [
+    { "jour": "Lundi", "ouvert": false },
+    { "jour": "Mardi", "ouvert": true, "ouverture": "06:30", "fermeture": "19:30" },
+    { "jour": "Mercredi", "ouvert": true, "ouverture": "06:30", "fermeture": "19:30" },
+    { "jour": "Jeudi", "ouvert": true, "ouverture": "06:30", "fermeture": "19:30" },
+    { "jour": "Vendredi", "ouvert": true, "ouverture": "06:30", "fermeture": "19:30" },
+    { "jour": "Samedi", "ouvert": true, "ouverture": "07:00", "fermeture": "19:00" },
+    { "jour": "Dimanche", "ouvert": true, "ouverture": "07:00", "fermeture": "13:00" }
+  ]
+}
