@@ -17,6 +17,8 @@ content:
       - { name: ville, label: Ville, type: string }
       - { name: telephone, label: Téléphone, type: string }
       - { name: email, label: E-mail, type: string }
+      - { name: telephoneLien, label: Téléphone au format international sans espaces (lien d'appel), type: string }
+      - { name: engagement, label: Phrase sur les commandes (accueil, produits, pied de page), type: string }
       - { name: mentionAdresse, label: Mention courte après l'adresse, type: string }
       - { name: mentionAdresseLongue, label: Mention longue (page Contact), type: string }
       - { name: bandeau, label: Bandeau en haut de page, type: string }
@@ -54,6 +56,8 @@ content:
           - { name: description, label: Description, type: string }
           - { name: prix, label: Prix en euros, type: number }
           - { name: momentane, label: Produit du moment, type: boolean }
+          - { name: image, label: Photo, type: image }
+          - { name: alt, label: Description de la photo, type: string }
   - name: actualites
     label: Actualités
     type: file
@@ -70,3 +74,52 @@ content:
           - { name: texte, label: Texte, type: text }
           - { name: image, label: Image, type: image }
           - { name: alt, label: Description de l'image, type: string }
+  - name: journee
+    label: Une journée au fournil
+    type: file
+    path: content/journee.json
+    format: json
+    fields:
+      - { name: titre, label: Titre de la section, type: string }
+      - { name: intro, label: Introduction, type: text }
+      - name: etapes
+        label: Étapes de la journée
+        type: object
+        list: true
+        fields:
+          - { name: heure, label: Heure (ex. 6 h 30), type: string }
+          - { name: titre, label: Titre, type: string }
+          - { name: texte, label: Texte, type: text }
+          - { name: image, label: Photo, type: image }
+          - { name: alt, label: Description de la photo, type: string }
+  - name: galerie
+    label: Galerie photo
+    type: file
+    path: content/galerie.json
+    format: json
+    fields:
+      - { name: titre, label: Titre de la section, type: string }
+      - { name: intro, label: Introduction, type: text }
+      - name: photos
+        label: Photos
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image }
+          - { name: alt, label: Description de la photo, type: string }
+          - { name: legende, label: Légende affichée au survol, type: string }
+  - name: credits
+    label: Crédits photographiques
+    type: file
+    path: content/credits.json
+    format: json
+    fields:
+      - name: credits
+        label: Crédits (une ligne par photo du dossier assets/img)
+        type: object
+        list: true
+        fields:
+          - { name: fichier, label: Fichier (assets/img/nom.jpg), type: string }
+          - { name: description, label: Description, type: string }
+          - { name: auteur, label: Photographe, type: string }
+          - { name: idUnsplash, label: Identifiant de la photo sur Unsplash, type: string }

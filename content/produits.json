@@ -1,21 +1,129 @@
 {
   "categories": [
-    { "id": "pains", "titre": "Les pains", "intro": "Pétris le matin, levés lentement, cuits au four à sole." },
-    { "id": "viennoiseries", "titre": "Les viennoiseries", "intro": "Du beurre, du beurre et un peu de patience." },
-    { "id": "patisseries", "titre": "Les pâtisseries", "intro": "Des classiques bretons et des tartes de saison." }
+    {
+      "id": "pains",
+      "titre": "Les pains",
+      "intro": "Pétris le matin, levés lentement, cuits au four à sole."
+    },
+    {
+      "id": "viennoiseries",
+      "titre": "Les viennoiseries",
+      "intro": "Du beurre, du beurre et un peu de patience."
+    },
+    {
+      "id": "patisseries",
+      "titre": "Les pâtisseries",
+      "intro": "Des classiques bretons et des tartes de saison."
+    }
   ],
   "produits": [
-    { "categorie": "pains", "nom": "Baguette Levain-Doré", "description": "Farine de blé du terroir, longue pousse de 20 heures.", "prix": 1.30, "momentane": false },
-    { "categorie": "pains", "nom": "Pain de campagne au levain", "description": "Mie alvéolée, croûte bien colorée, se garde 5 jours.", "prix": 4.90, "momentane": false },
-    { "categorie": "pains", "nom": "Pain au sarrasin et noisettes", "description": "Un pain breton, dense et parfumé.", "prix": 5.60, "momentane": true },
-    { "categorie": "pains", "nom": "Boule aux céréales", "description": "Cinq céréales et graines grillées.", "prix": 4.60, "momentane": false },
-    { "categorie": "viennoiseries", "nom": "Croissant pur beurre", "description": "Feuilletage fin, cuisson franche.", "prix": 1.35, "momentane": false },
-    { "categorie": "viennoiseries", "nom": "Pain au chocolat", "description": "Deux barres de chocolat noir.", "prix": 1.45, "momentane": false },
-    { "categorie": "viennoiseries", "nom": "Chausson aux pommes", "description": "Compote maison, pommes de saison.", "prix": 1.80, "momentane": true },
-    { "categorie": "viennoiseries", "nom": "Kouign-amann individuel", "description": "Caramélisé, croustillant, fondant.", "prix": 2.60, "momentane": false },
-    { "categorie": "patisseries", "nom": "Far breton aux pruneaux", "description": "Recette de la maison, part ou entier.", "prix": 2.90, "momentane": false },
-    { "categorie": "patisseries", "nom": "Tarte aux poires et amandes", "description": "Pâte sablée, crème d'amande.", "prix": 3.80, "momentane": true },
-    { "categorie": "patisseries", "nom": "Éclair au chocolat", "description": "Crème pâtissière au chocolat noir.", "prix": 3.40, "momentane": false },
-    { "categorie": "patisseries", "nom": "Paris-Rennes praliné", "description": "Choux, crème mousseline au praliné.", "prix": 3.90, "momentane": false }
+    {
+      "categorie": "pains",
+      "nom": "Baguette Levain-Doré",
+      "description": "Farine de blé du terroir, longue pousse de 20 heures.",
+      "prix": 1.3,
+      "momentane": false,
+      "image": "assets/img/baguette.jpg",
+      "alt": "Une baguette tranchée sur une planche, avec des épis de blé"
+    },
+    {
+      "categorie": "pains",
+      "nom": "Pain de campagne au levain",
+      "description": "Mie alvéolée, croûte bien colorée, se garde 5 jours.",
+      "prix": 4.9,
+      "momentane": false,
+      "image": "assets/img/pain-campagne.jpg",
+      "alt": "Un pain de campagne rond sur un linge clair"
+    },
+    {
+      "categorie": "pains",
+      "nom": "Pain au sarrasin et noisettes",
+      "description": "Un pain breton, dense et parfumé.",
+      "prix": 5.6,
+      "momentane": true,
+      "image": "assets/img/pains-farine.jpg",
+      "alt": "Des boules de pain rustique farinées, croûte dorée et craquelée"
+    },
+    {
+      "categorie": "pains",
+      "nom": "Boule aux céréales",
+      "description": "Cinq céréales et graines grillées.",
+      "prix": 4.6,
+      "momentane": false,
+      "image": "assets/img/produit-boule-cereales.jpg",
+      "alt": "Un pain aux céréales, croûte parsemée de flocons d'avoine"
+    },
+    {
+      "categorie": "viennoiseries",
+      "nom": "Croissant pur beurre",
+      "description": "Feuilletage fin, cuisson franche.",
+      "prix": 1.35,
+      "momentane": false,
+      "image": "assets/img/croissants.jpg",
+      "alt": "Croissants dorés alignés sur une plaque de cuisson"
+    },
+    {
+      "categorie": "viennoiseries",
+      "nom": "Pain au chocolat",
+      "description": "Deux barres de chocolat noir.",
+      "prix": 1.45,
+      "momentane": false,
+      "image": "assets/img/viennoiseries.jpg",
+      "alt": "Pains au chocolat et croissants sur une planche en bois"
+    },
+    {
+      "categorie": "viennoiseries",
+      "nom": "Chausson aux pommes",
+      "description": "Compote maison, pommes de saison.",
+      "prix": 1.8,
+      "momentane": true,
+      "image": "assets/img/produit-chausson.jpg",
+      "alt": "Un chausson doré sur du papier kraft"
+    },
+    {
+      "categorie": "viennoiseries",
+      "nom": "Kouign-amann individuel",
+      "description": "Caramélisé, croustillant, fondant.",
+      "prix": 2.6,
+      "momentane": false,
+      "image": "assets/img/produit-kouign-amann.jpg",
+      "alt": "Des pâtisseries caramélisées sortant du four"
+    },
+    {
+      "categorie": "patisseries",
+      "nom": "Far breton aux pruneaux",
+      "description": "Recette de la maison, part ou entier.",
+      "prix": 2.9,
+      "momentane": false,
+      "image": "assets/img/produit-far-pruneaux.jpg",
+      "alt": "Un gâteau aux pruneaux sur une assiette, entouré de pruneaux frais"
+    },
+    {
+      "categorie": "patisseries",
+      "nom": "Tarte aux poires et amandes",
+      "description": "Pâte sablée, crème d'amande.",
+      "prix": 3.8,
+      "momentane": true,
+      "image": "assets/img/produit-tarte-poires.jpg",
+      "alt": "Une tarte aux poires entamée, avec une part dans une assiette"
+    },
+    {
+      "categorie": "patisseries",
+      "nom": "Éclair au chocolat",
+      "description": "Crème pâtissière au chocolat noir.",
+      "prix": 3.4,
+      "momentane": false,
+      "image": "assets/img/produit-eclair.jpg",
+      "alt": "Des éclairs au chocolat sur un présentoir blanc"
+    },
+    {
+      "categorie": "patisseries",
+      "nom": "Paris-Rennes praliné",
+      "description": "Choux, crème mousseline au praliné.",
+      "prix": 3.9,
+      "momentane": false,
+      "image": "assets/img/produit-paris-rennes.jpg",
+      "alt": "Une couronne de pâte à choux garnie de crème et d'amandes effilées"
+    }
   ]
 }

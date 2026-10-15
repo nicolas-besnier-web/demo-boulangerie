@@ -14,7 +14,8 @@ Les pages du site sont **générées** : `node build.mjs` lit `content/*.json` e
 - `src/layout.html` : structure commune de toutes les pages.
 - `src/partials/tete.html` et `pied.html` : bandeau de démonstration, en-tête et pied de page (**un seul endroit**).
 - `src/pages/*.html` : contenu propre à chaque page, avec un en-tête `---` (title, description, `jsonld: oui` pour ajouter les données structurées Bakery).
-- Blocs utilisables dans les pages : `{{site.nom}}`, `{{site.rue}}`, `{{site.telephone}}`… (champs de `content/site.json`), `{{produits:pains}}`, `{{produits:moment}}`, `{{horaires}}`, `{{statut}}`, `{{actus}}`.
+- Blocs utilisables dans les pages : `{{site.nom}}`, `{{site.rue}}`, `{{site.telephone}}`… (champs de `content/site.json`), `{{cartes:pains}}`, `{{cartes:moment}}` (cartes produits avec photo), `{{horaires}}`, `{{horairesCompact}}`, `{{statut}}`, `{{actus}}`, `{{journee}}` (+ `{{journee.titre}}`, `{{journee.intro}}`), `{{galerie}}` (+ `{{galerie.titre}}`, `{{galerie.intro}}`), `{{credits}}`, `{{icone:fleche}}`.
+- **Chaque photo de `assets/img/` doit avoir une entrée dans `content/credits.json`** : sinon le build échoue (les crédits sont publiés dans les mentions légales).
 - Le script valide les contenus (catégorie inconnue, heures invalides, image absente…) et **échoue avec un message clair** plutôt que de publier un site cassé.
 - Netlify : `netlify.toml` lance `node build.mjs` et publie `dist/` à chaque commit, y compris ceux de Pages CMS.
 - `content/site.json` → `indexation` : `false` ajoute `noindex` (site de démonstration). Passer à `true` pour un vrai client.
@@ -28,11 +29,14 @@ Les pages du site sont **générées** : `node build.mjs` lit `content/*.json` e
   - `produits.json` — produits par catégorie, `momentane: true` = affiché sur l'accueil
   - `actualites.json` — actualités (date, titre, texte, image, alt)
   - `site.json` — coordonnées, textes communs, navigation, indexation
+  - `journee.json` — section « Une journée au fournil » (étapes, heures, photos)
+  - `galerie.json` — galerie photo avec visionneuse (la forme de chaque vignette est déduite de la photo)
+  - `credits.json` — crédits photographiques (page Mentions légales)
 - `.pages.yml` : configuration prête pour Pages CMS (https://pagescms.org).
 - `captures/` : captures d'écran pour la page Réalisations du site BALD.
 
 ## Direction artistique
-Fournil chaleureux : crème farine (`--farine`, `--creme`), brun croûte (`--brun`), brun fournil très sombre (`--fournil`), or de croûte (`--dore`) et rouge braise (`--braise`) pour les boutons. Titres en Young Serif, texte en Hanken Grotesk. Motifs : photo en arche (porte de fournil), tampon « première fournée », carte de menu à points de conduite, étiquettes arrondies.
+Fournil chaleureux : crème farine (`--farine`, `--creme`), brun croûte (`--brun`), brun fournil très sombre (`--fournil`), or de croûte (`--dore`) et rouge braise (`--braise`) pour les boutons. Titres en Young Serif, texte en Hanken Grotesk. Motifs : ouverture plein écran sombre (croissant sous la farine), tampon « première fournée », ruban doré, cartes produits à photo, section sombre « Une journée au fournil » avec heures en grand, galerie en mosaïque avec visionneuse, rythme clair/sombre. Animations discrètes (apparition, filet qui se dessine, photo qui se dévoile, léger décalage au défilement) toutes coupées avec `prefers-reduced-motion`.
 
 ## Aperçu local
 ```

@@ -3,64 +3,61 @@ title: Maison Levain-Doré — Boulangerie-pâtisserie à Rennes (site de démon
 description: Site de démonstration : boulangerie-pâtisserie artisanale fictive à Rennes, réalisée par BALD.
 jsonld: oui
 ---
-
-<section class="hero">
-  <div class="conteneur">
-    <div>
+<section class="hero-immersif sombre">
+  <img class="hero-fond" src="assets/img/hero-croissant-farine.jpg" alt="" width="2200" height="1760" fetchpriority="high" decoding="async">
+  <div class="conteneur hero-contenu">
+    <div class="hero-texte">
       <h1>Le pain <em>d'abord</em>. Le reste, avec patience.</h1>
       <p class="chapeau">Boulangerie-pâtisserie artisanale dans un quartier de Rennes. Chaque nuit le levain travaille, chaque matin le four à sole s'allume avant l'aube.</p>
       <div class="actions">
-        <a class="bouton" href="produits.html">Voir nos produits <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="bouton" href="produits.html">Voir nos produits {{icone:fleche}}</a>
         <a class="bouton discret" href="contact.html">Horaires et accès</a>
       </div>
       {{statut}}
     </div>
-    <div class="arche">
-      <img src="assets/img/pains-farine.jpg" alt="Des boules de pain de campagne farinées, croûte dorée et craquelée" width="933" height="1400" fetchpriority="high">
-      <div class="tampon" aria-hidden="true"><span>Première fournée<b>6 h 30</b></span></div>
-    </div>
+    <div class="tampon" aria-hidden="true"><span>Première fournée<b>6&nbsp;h&nbsp;30</b></span></div>
   </div>
 </section>
 
-<section class="moment creme">
+<div class="ruban" aria-label="Nos engagements">
+  <ul class="conteneur">
+    <li>Levain maison</li><li>Pétri sur place</li><li>Cuit au four à sole</li><li>Farines locales</li>
+  </ul>
+</div>
+
+<section class="moment">
   <div class="conteneur">
-    <div class="photo-haute apparait"><img src="assets/img/croissants.jpg" alt="Croissants dorés alignés sur une plaque de cuisson" width="1400" height="933" loading="lazy"></div>
-    <div class="apparait">
+    <div class="titre-section apparait">
       <h2>Les fournées du moment</h2>
       <p class="chapeau">Ce que le fournil sort cette semaine, au gré des saisons et de l'humeur du levain.</p>
-      {{produits:moment}}
-      <div class="actions"><a class="bouton discret" href="produits.html">Toute la carte <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
+    {{cartes:moment}}
+    <div class="actions apparait"><a class="bouton discret" href="produits.html">Toute la carte {{icone:fleche}}</a></div>
   </div>
 </section>
 
-<section class="promesse sombre">
-  <img src="assets/img/farine.jpg" alt="" width="933" height="1400" loading="lazy">
-  <div class="conteneur apparait">
-    <h2>Farine, eau, sel, levain. Et le temps qu'il faut.</h2>
-    <ul aria-label="Nos engagements">
-      <li>Levain maison</li><li>Pétri sur place</li><li>Four à sole</li><li>Farines locales</li>
-    </ul>
-    <p>Rien de plus dans la recette. Pas de raccourci non plus : nos pâtes reposent de 18 à 24 heures.</p>
-  </div>
-</section>
-
-<section>
-  <div class="conteneur duo">
-    <div class="photos-superposees apparait">
-      <img src="assets/img/boulanger-tablier.jpg" alt="Un boulanger en tablier rayé tient un pain coupé en deux" width="933" height="1400" loading="lazy">
-      <img src="assets/img/croissant-farine.jpg" alt="Un croissant sous une fine poussière de farine" width="1400" height="1120" loading="lazy">
+<section class="sombre section-journee">
+  <div class="conteneur">
+    <div class="titre-section apparait">
+      <h2>{{journee.titre}}</h2>
+      <p class="chapeau">{{journee.intro}}</p>
     </div>
-    <div class="apparait">
-      <h2>Trois générations, un seul fournil</h2>
-      <p class="chapeau">Depuis 1987, la maison se transmet un levain, une façon de faire et l'habitude de dire bonjour à chacun.</p>
-      <p>Marie-Jo et Armel (personnages imaginaires) ont ouvert la boutique avec un four d'occasion et beaucoup d'entêtement. Aujourd'hui, la deuxième génération a repris les pétrins sans toucher à la recette.</p>
-      <div class="actions"><a class="bouton discret" href="histoire.html">Lire notre histoire <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    </div>
+    {{journee}}
+    <div class="actions apparait"><a class="bouton discret" href="histoire.html">Lire l'histoire de la maison {{icone:fleche}}</a></div>
   </div>
 </section>
 
 <section class="creme">
+  <div class="conteneur">
+    <div class="titre-section apparait">
+      <h2>{{galerie.titre}}</h2>
+      <p class="chapeau">{{galerie.intro}}</p>
+    </div>
+    {{galerie}}
+  </div>
+</section>
+
+<section class="avis">
   <div class="conteneur">
     <div class="titre-section apparait">
       <h2>Ce que pourraient dire vos clients</h2>
@@ -86,10 +83,14 @@ jsonld: oui
 <section class="venir sombre">
   <div class="conteneur">
     <div class="apparait">
-      <h2>Passez nous voir</h2>
+      <h2>Passez nous voir, ou commandez pour demain</h2>
       <address>{{site.rue}}, {{site.codePostalVille}}<br><span>{{site.mentionAdresse}}</span></address>
-      <p style="margin-top:1rem">Téléphone : {{site.telephone}} (numéro fictif)</p>
-      <div class="actions"><a class="bouton" href="contact.html">Contact et accès <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <p class="engagement">{{site.engagement}}</p>
+      <div class="actions">
+        <a class="bouton" href="contact.html#ecrire">Commander un gâteau {{icone:fleche}}</a>
+        <a class="bouton discret" href="tel:{{site.telephoneLien}}">Appeler le {{site.telephone}}</a>
+      </div>
+      <p class="fictif-note">Numéro et adresse fictifs.</p>
     </div>
     <div class="apparait">{{horaires}}</div>
   </div>

@@ -1,0 +1,154 @@
+{
+  "credits": [
+    {
+      "fichier": "assets/img/pains-farine.jpg",
+      "description": "Pains rustiques farinés",
+      "auteur": "Maria Orlova",
+      "idUnsplash": "kU7TkW9FIJY"
+    },
+    {
+      "fichier": "assets/img/croissants.jpg",
+      "description": "Croissants sur plaque",
+      "auteur": "Conor Brown",
+      "idUnsplash": "sqkXyyj4WdE"
+    },
+    {
+      "fichier": "assets/img/viennoiseries.jpg",
+      "description": "Viennoiseries sur planche",
+      "auteur": "Tabitha Turner",
+      "idUnsplash": "Ns2aJ5OXKds"
+    },
+    {
+      "fichier": "assets/img/vitrine-pains.jpg",
+      "description": "Étagères de pains",
+      "auteur": "Yeh Xintong",
+      "idUnsplash": "go3DT3PpIw4"
+    },
+    {
+      "fichier": "assets/img/petrissage.jpg",
+      "description": "Pétrissage",
+      "auteur": "DDP",
+      "idUnsplash": "5CRzqqWzEKQ"
+    },
+    {
+      "fichier": "assets/img/farine.jpg",
+      "description": "Farine sur plan de travail",
+      "auteur": "Maite Paternain",
+      "idUnsplash": "SEb14_nBjc4"
+    },
+    {
+      "fichier": "assets/img/boulanger-tablier.jpg",
+      "description": "Boulanger en tablier",
+      "auteur": "Maite Paternain",
+      "idUnsplash": "admbIJdOxUs"
+    },
+    {
+      "fichier": "assets/img/vitrine-patisseries.jpg",
+      "description": "Vitrine de pâtisseries",
+      "auteur": "Ulysse Pointcheval",
+      "idUnsplash": "1WmlAiYgnoI"
+    },
+    {
+      "fichier": "assets/img/pain-campagne.jpg",
+      "description": "Pain de campagne",
+      "auteur": "Monika Grabkowska",
+      "idUnsplash": "mha2dvydACg"
+    },
+    {
+      "fichier": "assets/img/baguette.jpg",
+      "description": "Baguette tranchée",
+      "auteur": "Victoria Shes",
+      "idUnsplash": "IUk1S6n2s0o"
+    },
+    {
+      "fichier": "assets/img/hero-croissant-farine.jpg",
+      "description": "Croissants sous la farine",
+      "auteur": "Mae Mu",
+      "idUnsplash": "m9pzwmxm2rk"
+    },
+    {
+      "fichier": "assets/img/vitrine-comptoir.jpg",
+      "description": "Comptoir de viennoiseries",
+      "auteur": "Peace Creative",
+      "idUnsplash": "pVY9k8pzTzM"
+    },
+    {
+      "fichier": "assets/img/journee-petrin.jpg",
+      "description": "Façonnage du pain",
+      "auteur": "Kimia Kazemi",
+      "idUnsplash": "Zx4DfXHAw-M"
+    },
+    {
+      "fichier": "assets/img/journee-four.jpg",
+      "description": "Pains sur chariot",
+      "auteur": "Maite Paternain",
+      "idUnsplash": "UVNguozJOPE"
+    },
+    {
+      "fichier": "assets/img/journee-fournee.jpg",
+      "description": "Boulangère et plateau de petits pains",
+      "auteur": "Arsham Baseri",
+      "idUnsplash": "RQdXS861Tyc"
+    },
+    {
+      "fichier": "assets/img/journee-matin.jpg",
+      "description": "Intérieur d'une boulangerie",
+      "auteur": "Adrien Olichon",
+      "idUnsplash": "gvWGbG4uiKI"
+    },
+    {
+      "fichier": "assets/img/journee-midi.jpg",
+      "description": "Vitrine de boulangerie",
+      "auteur": "Wei",
+      "idUnsplash": "f_q-SIU-ORo"
+    },
+    {
+      "fichier": "assets/img/journee-levain.jpg",
+      "description": "Pâtons en paniers de fermentation",
+      "auteur": "Diego Arenas de Rodrigo",
+      "idUnsplash": "AzglBd56d3k"
+    },
+    {
+      "fichier": "assets/img/produit-kouign-amann.jpg",
+      "description": "Pâtisseries sortant du four",
+      "auteur": "Sebastián Brito",
+      "idUnsplash": "BOj1SS6yjdM"
+    },
+    {
+      "fichier": "assets/img/produit-chausson.jpg",
+      "description": "Chausson sur papier kraft",
+      "auteur": "Anhelina Vasylyk",
+      "idUnsplash": "PHYfp5O9CI0"
+    },
+    {
+      "fichier": "assets/img/produit-tarte-poires.jpg",
+      "description": "Tarte aux poires",
+      "auteur": "Diliara Garifullina",
+      "idUnsplash": "es7aJ-3iBDo"
+    },
+    {
+      "fichier": "assets/img/produit-boule-cereales.jpg",
+      "description": "Pain aux céréales",
+      "auteur": "Sergio Arze",
+      "idUnsplash": "8JGA8LZv9i4"
+    },
+    {
+      "fichier": "assets/img/produit-eclair.jpg",
+      "description": "Éclairs au chocolat",
+      "auteur": "Aliona Gumeniuk",
+      "idUnsplash": "YEXtLdzoMrc"
+    },
+    {
+      "fichier": "assets/img/produit-far-pruneaux.jpg",
+      "description": "Gâteau aux pruneaux",
+      "auteur": "Nataliya Melnychuk",
+      "idUnsplash": "QLqKIpao5O8"
+    },
+    {
+      "fichier": "assets/img/produit-paris-rennes.jpg",
+      "description": "Couronne de pâte à choux",
+      "auteur": "Christian Agbede",
+      "idUnsplash": "cB3IP8hbyhE"
+    }
+  ]
+}

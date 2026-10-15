@@ -1,19 +1,32 @@
 <footer class="site-pied">
-  <div class="conteneur">
-    <div>
+  <div class="conteneur pied-grille">
+    <div class="pied-marque">
       <a class="marque" href="index.html">{{logo}}<span>{{site.nom}}</span></a>
-      <p>{{site.slogan}}</p>
-      <p>Site de démonstration : la boulangerie, son équipe, son adresse et ses actualités sont imaginaires.</p>
+      <p class="pied-slogan">{{site.slogan}}</p>
+      <p>Boulangerie-pâtisserie artisanale, à Rennes depuis 1987. Pains au levain, viennoiseries pur beurre et pâtisseries de saison.</p>
+      <p class="pied-demo">Site de démonstration : la boulangerie, son équipe, son adresse et ses actualités sont imaginaires.</p>
     </div>
     <div>
       <h2>Nous trouver</h2>
       <address>{{site.rue}}<br>{{site.codePostalVille}}<br><span>{{site.mentionAdresse}}</span></address>
-      <p>Téléphone : {{site.telephone}}<br>E-mail : {{site.email}}</p>
+      <ul class="pied-liens">
+        <li><a href="tel:{{site.telephoneLien}}">{{site.telephone}}</a></li>
+        <li><a href="mailto:{{site.email}}">{{site.email}}</a></li>
+      </ul>
+      <p class="pied-engagement">{{site.engagement}}</p>
+    </div>
+    <div>
+      <h2>Horaires</h2>
+      {{horairesCompact}}
+      {{statut}}
     </div>
     <div>
       <h2>Le site</h2>
-      <ul>{{navPied}}</ul>
+      <ul class="pied-liens">{{navPied}}</ul>
     </div>
-    <p class="pied-bas">{{site.piedDemo}}</p>
+  </div>
+  <div class="conteneur pied-bas">
+    <p>{{site.piedDemo}}</p>
+    <a class="retour-haut" href="#contenu">Retour en haut {{icone:haut}}</a>
   </div>
 </footer>

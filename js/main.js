@@ -1,7 +1,8 @@
 // Maison Levain-Doré — site de démonstration réalisé par BALD
 // Amélioration progressive : tout le contenu est déjà dans le HTML (généré par build.mjs).
 // Ce script ajoute seulement le menu mobile, le statut « ouvert maintenant », le jour en cours,
-// le formulaire de démonstration et l'apparition douce. Aucun cookie, aucune ressource externe.
+// la visionneuse de la galerie, le formulaire de démonstration et les animations (coupées si le
+// visiteur a demandé de réduire les animations). Aucun cookie, aucune ressource externe.
 (function () {
   "use strict";
 
@@ -55,6 +56,8 @@
     zone.textContent = texte;
   });
 
+  var reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Formulaire de démonstration : rien n'est envoyé, jamais.
   var form = document.getElementById("formulaire-contact");
   if (form) {
@@ -64,15 +67,72 @@
       if (!form.checkValidity()) { form.reportValidity(); return; }
       msg.hidden = false;
       msg.textContent = "Ceci est un site de démonstration : aucun message n'est envoyé.";
-      form.reset();
+      msg.scrollIntoView({ block: "nearest", behavior: reduit ? "auto" : "smooth" });
     });
   }
 
-  // Apparition douce
+  // Visionneuse de la galerie : croix, Échap ou clic à côté pour fermer ; flèches pour naviguer
+  var galerie = document.querySelector(".galerie");
+  var dlg = document.querySelector(".visionneuse");
+  if (galerie && dlg && typeof dlg.showModal === "function") {
+    var liens = Array.prototype.slice.call(galerie.querySelectorAll("a"));
+    var img = dlg.querySelector("img");
+    var legende = dlg.querySelector("figcaption");
+    var courant = 0;
+    var montrer = function (i) {
+      courant = (i + liens.length) % liens.length;
+      var a = liens[courant];
+      img.src = a.getAttribute("href");
+      img.alt = a.getAttribute("data-alt") || "";
+      legende.textContent = a.getAttribute("data-legende") || "";
+    };
+    liens.forEach(function (a, i) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        montrer(i);
+        dlg.showModal();
+        dlg.querySelector(".v-fermer").focus();
+      });
+    });
+    dlg.querySelector(".v-fermer").addEventListener("click", function () { dlg.close(); });
+    dlg.querySelector(".v-prec").addEventListener("click", function () { montrer(courant - 1); });
+    dlg.querySelector(".v-suiv").addEventListener("click", function () { montrer(courant + 1); });
+    dlg.addEventListener("click", function (e) {
+      if (e.target === dlg || e.target.hasAttribute("data-fermer")) dlg.close();
+    });
+    dlg.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") montrer(courant - 1);
+      if (e.key === "ArrowRight") montrer(courant + 1);
+    });
+  }
+
+  // Apparition au défilement, avec un léger décalage entre éléments voisins
   var noeuds = document.querySelectorAll(".apparait");
-  if (!("IntersectionObserver" in window)) { noeuds.forEach(function (n) { n.classList.add("vu"); }); return; }
-  var io = new IntersectionObserver(function (entrees) {
-    entrees.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("vu"); io.unobserve(en.target); } });
-  }, { rootMargin: "0px 0px -8% 0px" });
-  noeuds.forEach(function (n) { io.observe(n); });
+  noeuds.forEach(function (n) {
+    var freres = Array.prototype.filter.call(n.parentNode.children, function (c) { return c.classList.contains("apparait"); });
+    n.style.setProperty("--i", String(Math.min(freres.indexOf(n), 5)));
+  });
+  if (reduit || !("IntersectionObserver" in window)) {
+    noeuds.forEach(function (n) { n.classList.add("vu"); });
+  } else {
+    var io = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("vu"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    noeuds.forEach(function (n) { io.observe(n); });
+  }
+
+  // Léger défilement différé de l'image d'ouverture et du tampon
+  var hero = document.querySelector(".hero-immersif");
+  if (hero && !reduit) {
+    var attente = false;
+    window.addEventListener("scroll", function () {
+      if (attente) return;
+      attente = true;
+      window.requestAnimationFrame(function () {
+        var p = Math.max(0, Math.min(1, window.scrollY / hero.offsetHeight));
+        hero.style.setProperty("--p", p.toFixed(3));
+        attente = false;
+      });
+    }, { passive: true });
+  }
 })();

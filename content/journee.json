@@ -1,0 +1,48 @@
+{
+  "titre": "Une journée au fournil",
+  "intro": "De la première fournée à la fermeture, voici comment la maison s'organise. On commence avant que le quartier ne se réveille.",
+  "etapes": [
+    {
+      "heure": "3 h 30",
+      "titre": "Les premières mains",
+      "texte": "Le fournil s'allume avant la rue. On façonne les baguettes et les boules à la main, un pâton après l'autre.",
+      "image": "assets/img/journee-petrin.jpg",
+      "alt": "Un boulanger façonne une pâte sur un plan de travail"
+    },
+    {
+      "heure": "5 h",
+      "titre": "La sortie du four",
+      "texte": "Le four à sole monte à 250 °C. Les pains sortent, craquent en refroidissant et s'alignent sur les chariots.",
+      "image": "assets/img/journee-four.jpg",
+      "alt": "Des pains de campagne sur un chariot à étagères"
+    },
+    {
+      "heure": "6 h 30",
+      "titre": "La première fournée",
+      "texte": "On ouvre la porte. Les premiers pains chauds passent du plateau au comptoir, et la rue sent la croûte.",
+      "image": "assets/img/journee-fournee.jpg",
+      "alt": "Une boulangère dépose des petits pains sur un plateau"
+    },
+    {
+      "heure": "8 h",
+      "titre": "La file du matin",
+      "texte": "Baguettes, croissants et un mot pour chacun. Le comptoir ne désemplit pas avant midi.",
+      "image": "assets/img/journee-matin.jpg",
+      "alt": "L'intérieur lumineux d'une boulangerie avec son comptoir"
+    },
+    {
+      "heure": "12 h",
+      "titre": "Le comptoir de midi",
+      "texte": "Tartes, éclairs, far breton : la pâtisserie prend le relais et une seconde fournée de pains part au four.",
+      "image": "assets/img/journee-midi.jpg",
+      "alt": "Vitrine de boulangerie garnie de pains et de viennoiseries"
+    },
+    {
+      "heure": "19 h 30",
+      "titre": "On referme, le levain veille",
+      "texte": "Les dernières baguettes partent. On balaie la farine, on nourrit le levain et on dépose les pâtons au repos pour la nuit.",
+      "image": "assets/img/journee-levain.jpg",
+      "alt": "Deux pâtons dans leurs paniers de fermentation"
+    }
+  ]
+}

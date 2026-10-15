@@ -20,6 +20,9 @@ const site = json("site.json");
 const horaires = json("horaires.json");
 const produits = json("produits.json");
 const actualites = json("actualites.json");
+const journee = json("journee.json");
+const galerie = json("galerie.json");
+const credits = json("credits.json");
 if (erreurs.length) sortir();
 
 const JOURS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
@@ -55,6 +58,27 @@ for (const a of actualites.actualites || []) {
   if (a.image && !existsSync(join(ROOT, a.image))) echec(`actualites.json : « ${a.titre} » — image introuvable (${a.image})`);
   if (a.image && !a.alt) echec(`actualites.json : « ${a.titre} » — description de l'image (alt) manquante`);
 }
+for (const e of journee.etapes || []) {
+  if (!e.heure || !e.titre || !e.texte) echec("journee.json : une étape n'a pas d'heure, de titre ou de texte");
+  if (e.image && !existsSync(join(ROOT, e.image))) echec(`journee.json : « ${e.titre} » — image introuvable (${e.image})`);
+  if (e.image && !e.alt) echec(`journee.json : « ${e.titre} » — description de l'image (alt) manquante`);
+}
+for (const p of galerie.photos || []) {
+  if (!existsSync(join(ROOT, p.image || ""))) echec(`galerie.json : image introuvable (${p.image})`);
+  if (!p.alt) echec(`galerie.json : ${p.image} — description (alt) manquante`);
+}
+for (const p of produits.produits || []) {
+  if (p.image && !existsSync(join(ROOT, p.image))) echec(`produits.json : « ${p.nom} » — image introuvable (${p.image})`);
+  if (p.image && !p.alt) echec(`produits.json : « ${p.nom} » — description de l'image (alt) manquante`);
+}
+// Chaque photo du projet doit être créditée (obligation de la page Mentions légales)
+const crediteesSet = new Set((credits.credits || []).map((c) => c.fichier));
+for (const f of readdirSync(join(ROOT, "assets", "img"))) {
+  if (!crediteesSet.has("assets/img/" + f)) echec(`credits.json : aucune mention de crédit pour assets/img/${f}`);
+}
+for (const c of credits.credits || []) {
+  if (!existsSync(join(ROOT, c.fichier))) echec(`credits.json : fichier introuvable (${c.fichier})`);
+}
 if (erreurs.length) sortir();
 
 function sortir() {
@@ -82,19 +106,72 @@ function tailleJpeg(fichier) { // lit largeur et hauteur dans l'en-tête JPEG
 
 const ICONES = {
   menu: `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>`,
+  haut: `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>`,
   fleche: `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`,
 };
 const LOGO = `<svg viewBox="0 0 32 32" aria-hidden="true" fill="currentColor"><path d="M15.2 30V12h1.6v18z"/><ellipse cx="16" cy="6" rx="2.4" ry="3.7"/><ellipse cx="11.2" cy="11.5" rx="2.1" ry="3.7" transform="rotate(-35 11.2 11.5)"/><ellipse cx="20.8" cy="11.5" rx="2.1" ry="3.7" transform="rotate(35 20.8 11.5)"/><ellipse cx="11.2" cy="18" rx="2.1" ry="3.7" transform="rotate(-35 11.2 18)"/><ellipse cx="20.8" cy="18" rx="2.1" ry="3.7" transform="rotate(35 20.8 18)"/></svg>`;
 
 // ---------- Blocs générés à partir des contenus
-function blocProduits(cat) {
+const nbsp = (t) => t.replace(/ /g, "\u00a0");
+function balise(src, alt, { classe = "", lazy = true, sizes = "" } = {}) {
+  const t = tailleJpeg(join(ROOT, src));
+  const dim = t ? ` width="${t.w}" height="${t.h}"` : "";
+  const c = classe ? ` class="${classe}"` : "";
+  const sz = sizes ? ` sizes="${sizes}"` : "";
+  return `<img src="${esc(src)}" alt="${esc(alt || "")}"${dim}${c}${sz}${lazy ? ' loading="lazy" decoding="async"' : ""}>`;
+}
+
+function blocCartes(cat) {
+  if (cat !== "moment" && !idsCat.has(cat)) { echec(`{{cartes:${cat}}} : catégorie inconnue`); return ""; }
   const liste = (produits.produits || []).filter((p) => (cat === "moment" ? p.momentane : p.categorie === cat));
-  if (cat !== "moment" && !idsCat.has(cat)) { echec(`{{produits:${cat}}} : catégorie inconnue`); return ""; }
   if (!liste.length) return `<p>Rien à signaler cette semaine : revenez vite nous voir.</p>`;
-  return `<ul class="carte">\n` + liste.map((p) => {
-    const pastille = cat !== "moment" && p.momentane ? `<span class="pastille">du moment</span>` : "";
-    return `        <li><span class="nom">${esc(p.nom)}${pastille}</span><span class="points" aria-hidden="true"></span><span class="prix">${esc(euros.format(p.prix))}</span><p class="desc">${esc(p.description || "")}</p></li>`;
-  }).join("\n") + `\n      </ul>`;
+  return `<ul class="cartes${cat === "moment" ? " cartes-moment" : ""}">\n` + liste.map((p) => {
+    const pastille = p.momentane ? `<span class="pastille">du moment</span>` : "";
+    const photo = p.image ? `<figure>${balise(p.image, p.alt)}${pastille}</figure>` : "";
+    return `      <li class="produit apparait">${photo}<div class="produit-texte"><h3 class="nom">${esc(p.nom)}</h3><span class="prix">${esc(euros.format(p.prix))}</span><p class="desc">${esc(p.description || "")}</p></div></li>`;
+  }).join("\n") + `\n    </ul>`;
+}
+
+function blocJournee() {
+  return `<ol class="journee">\n` + journee.etapes.map((e) => `      <li class="etape apparait"><p class="etape-heure">${esc(nbsp(e.heure))}</p><div class="etape-texte"><h3>${esc(e.titre)}</h3><p>${esc(e.texte)}</p></div>${e.image ? `<figure class="etape-photo">${balise(e.image, e.alt)}</figure>` : ""}</li>`).join("\n") + `\n    </ol>`;
+}
+
+function blocGalerie() {
+  const items = galerie.photos.map((p) => {
+    const t = tailleJpeg(join(ROOT, p.image));
+    const forme = t ? (t.h > t.w * 1.15 ? "haut" : t.w > t.h * 1.15 ? "large" : "carre") : "large";
+    return `      <li class="g-${forme} apparait"><a href="${esc(p.image)}" data-legende="${esc(p.legende || "")}" data-alt="${esc(p.alt)}">${balise(p.image, p.alt)}<span class="g-legende" aria-hidden="true">${esc(p.legende || "")}</span><span class="visuellement-cache">Agrandir la photo</span></a></li>`;
+  }).join("\n");
+  const croix = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>`;
+  const prec = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>`;
+  const suiv = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>`;
+  return `<ul class="galerie">\n${items}\n    </ul>
+    <dialog class="visionneuse" aria-label="Photo agrandie">
+      <div class="v-fond" data-fermer></div>
+      <button class="v-bouton v-fermer" type="button" aria-label="Fermer la photo">${croix}</button>
+      <button class="v-bouton v-prec" type="button" aria-label="Photo précédente">${prec}</button>
+      <button class="v-bouton v-suiv" type="button" aria-label="Photo suivante">${suiv}</button>
+      <figure><img alt=""><figcaption></figcaption></figure>
+    </dialog>`;
+}
+
+function blocCredits() {
+  return `<ul>\n` + credits.credits.map((c) => `      <li>${esc(c.description)} : ${esc(c.auteur)}, <a href="https://unsplash.com/photos/${esc(c.idUnsplash)}">photo sur Unsplash</a></li>`).join("\n") + `\n    </ul>`;
+}
+
+function blocHorairesCompact() {
+  const abr = { Lundi: "lundi", Mardi: "mardi", Mercredi: "mercredi", Jeudi: "jeudi", Vendredi: "vendredi", Samedi: "samedi", Dimanche: "dimanche" };
+  const lib = (j) => (j.ouvert ? `${heure(j.ouverture)} – ${heure(j.fermeture)}` : "Fermé");
+  const groupes = [];
+  for (const nom of JOURS) {
+    const j = horaires.jours.find((x) => x.jour === nom);
+    const dernier = groupes[groupes.length - 1];
+    if (dernier && dernier.texte === lib(j)) dernier.fin = nom; else groupes.push({ debut: nom, fin: nom, texte: lib(j) });
+  }
+  return `<ul class="pied-horaires">` + groupes.map((g) => {
+    const jours = g.debut === g.fin ? abr[g.debut] : `${abr[g.debut]} au ${abr[g.fin]}`;
+    return `<li><span>${jours.charAt(0).toUpperCase() + jours.slice(1)}</span><span>${esc(g.texte)}</span></li>`;
+  }).join("") + `</ul>`;
 }
 
 function blocHoraires() {
@@ -116,15 +193,10 @@ function blocStatut() {
 function blocActus(limite) {
   let liste = [...(actualites.actualites || [])].sort((a, b) => b.date.localeCompare(a.date));
   if (limite) liste = liste.slice(0, Number(limite));
-  return `<ul class="actus">\n` + liste.map((a) => {
-    let img = "";
-    if (a.image) {
-      const t = tailleJpeg(join(ROOT, a.image));
-      const dim = t ? ` width="${t.w}" height="${t.h}"` : "";
-      img = `<div class="actu-photo"><img src="${esc(a.image)}" alt="${esc(a.alt || "")}"${dim} loading="lazy"></div>`;
-    }
+  return `<ul class="actus">\n` + liste.map((a, i) => {
+    const img = a.image ? `<div class="actu-photo">${balise(a.image, a.alt, { lazy: i > 0 })}</div>` : "";
     const d = new Date(a.date + "T12:00:00");
-    return `      <li class="actu apparait">${img}<div><time datetime="${a.date}">${dateLongue.format(d)}</time><h2>${esc(a.titre)}</h2><p>${esc(a.texte)}</p></div></li>`;
+    return `      <li class="actu apparait">${img}<div class="actu-texte"><time datetime="${a.date}">${dateLongue.format(d)}</time><h2>${esc(a.titre)}</h2><p>${esc(a.texte)}</p></div></li>`;
   }).join("\n") + `\n    </ul>`;
 }
 
@@ -149,6 +221,12 @@ function remplacer(texte, ctx) {
     let change = false;
     texte = texte.replace(/\{\{\s*([\w.]+)(?::([\w-]+))?\s*\}\}/g, (m, nom, arg) => {
       change = true;
+      if (nom.startsWith("journee.") || nom.startsWith("galerie.")) {
+        const [src, cle] = nom.split(".");
+        const v = (src === "journee" ? journee : galerie)[cle];
+        if (v === undefined) { echec(`{{${nom}}} : champ absent de content/${src}.json`); return ""; }
+        return esc(v);
+      }
       if (nom.startsWith("site.")) {
         const v = site[nom.slice(5)];
         if (v === undefined) { echec(`{{${nom}}} : champ absent de content/site.json (${ctx.file})`); return ""; }
@@ -166,7 +244,11 @@ function remplacer(texte, ctx) {
         case "icone": return ICONES[arg] || echec(`{{icone:${arg}}} inconnue`) || "";
         case "nav": return site.navigation.map((n) => `<li><a href="${esc(n.fichier)}"${n.fichier === ctx.file ? ' aria-current="page"' : ""}>${esc(n.label)}</a></li>`).join("");
         case "navPied": return site.navigation.map((n) => `<li><a href="${esc(n.fichier)}">${esc(n.label)}</a></li>`).join("") + `<li><a href="mentions-legales.html">Mentions légales et crédits</a></li>`;
-        case "produits": return blocProduits(arg);
+        case "cartes": return blocCartes(arg);
+        case "journee": return blocJournee();
+        case "galerie": return blocGalerie();
+        case "credits": return blocCredits();
+        case "horairesCompact": return blocHorairesCompact();
         case "horaires": return blocHoraires();
         case "statut": return blocStatut();
         case "actus": return blocActus(arg);

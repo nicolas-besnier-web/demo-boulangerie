@@ -19,17 +19,17 @@ jsonld: oui
         <dt>Adresse</dt>
         <dd>{{site.rue}}<br>{{site.codePostalVille}}<br><span class="fictif">{{site.mentionAdresseLongue}}</span></dd>
         <dt>Téléphone</dt>
-        <dd>{{site.telephone}} <span class="fictif">(numéro fictif)</span></dd>
+        <dd><a href="tel:{{site.telephoneLien}}">{{site.telephone}}</a> <span class="fictif">(numéro fictif)</span></dd>
         <dt>E-mail</dt>
-        <dd>{{site.email}} <span class="fictif">(adresse fictive)</span></dd>
+        <dd><a href="mailto:{{site.email}}">{{site.email}}</a> <span class="fictif">(adresse fictive)</span></dd>
       </dl>
-      <h2 style="margin:2.5rem 0 1rem">Horaires</h2>
+      <h2 class="titre-sous-bloc">Horaires</h2>
       <div id="horaires">{{horaires}}</div>
     </div>
-    <div>
-      <div class="formulaire avis-sans-js"><h2 style="font-size:1.7rem;margin-bottom:1rem">Écrivez-nous</h2><p>Le formulaire a besoin de JavaScript. Écrivez-nous à {{site.email}} ou appelez le {{site.telephone}}.</p><p>Ceci est un site de démonstration : aucun message n'est envoyé.</p></div>
-      <form class="formulaire" id="formulaire-contact" novalidate>
-        <h2 style="font-size:1.7rem;margin-bottom:1.5rem">Écrivez-nous</h2>
+    <div id="ecrire">
+      <div class="formulaire avis-sans-js" id="ecrire-sans-js"><h2 class="titre-form">Écrivez-nous</h2><p>Le formulaire a besoin de JavaScript. Écrivez-nous à {{site.email}} ou appelez le {{site.telephone}}.</p><p>Ceci est un site de démonstration : aucun message n'est envoyé.</p></div>
+      <form class="formulaire" id="formulaire-contact" novalidate aria-labelledby="titre-ecrire">
+        <h2 id="titre-ecrire" class="titre-form">Écrivez-nous</h2>
         <div class="champ">
           <label for="nom">Votre nom</label>
           <input id="nom" name="nom" type="text" autocomplete="name" required>

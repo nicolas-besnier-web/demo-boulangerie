@@ -1,0 +1,46 @@
+{
+  "titre": "La maison en images",
+  "intro": "Un coup d'œil dans le fournil et derrière la vitrine. Touchez une photo pour l'agrandir.",
+  "photos": [
+    {
+      "image": "assets/img/boulanger-tablier.jpg",
+      "alt": "Un boulanger en tablier rayé tient un pain coupé en deux",
+      "legende": "Le pain se juge à sa mie"
+    },
+    {
+      "image": "assets/img/vitrine-pains.jpg",
+      "alt": "Étagères vitrées garnies de baguettes et de pains de toutes formes",
+      "legende": "La vitrine du matin"
+    },
+    {
+      "image": "assets/img/farine.jpg",
+      "alt": "Un boulanger saupoudre de la farine sur son plan de travail",
+      "legende": "Une pluie de farine"
+    },
+    {
+      "image": "assets/img/petrissage.jpg",
+      "alt": "Des mains enfarinées pétrissent une pâte sur un plan de travail",
+      "legende": "Pétri à la main"
+    },
+    {
+      "image": "assets/img/vitrine-patisseries.jpg",
+      "alt": "Vitrine de pâtisseries : tartes aux fruits rouges et gâteaux au chocolat",
+      "legende": "Les pâtisseries du jour"
+    },
+    {
+      "image": "assets/img/croissants.jpg",
+      "alt": "Croissants dorés alignés sur une plaque de cuisson",
+      "legende": "Les croissants, tout juste sortis"
+    },
+    {
+      "image": "assets/img/pain-campagne.jpg",
+      "alt": "Un pain de campagne rond sur un linge clair",
+      "legende": "Le pain de campagne au levain"
+    },
+    {
+      "image": "assets/img/vitrine-comptoir.jpg",
+      "alt": "Comptoir de boulangerie garni de viennoiseries",
+      "legende": "Au comptoir"
+    }
+  ]
+}

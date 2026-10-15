@@ -13,10 +13,27 @@
   "piedDemo": "Projet de démonstration réalisé par BALD, création de sites web à Rennes — entreprise fictive. Ce site n'utilise aucun cookie.",
   "indexation": false,
   "navigation": [
-    { "fichier": "index.html", "label": "Accueil" },
-    { "fichier": "produits.html", "label": "Nos produits" },
-    { "fichier": "histoire.html", "label": "Notre histoire" },
-    { "fichier": "actualites.html", "label": "Actualités" },
-    { "fichier": "contact.html", "label": "Contact et horaires" }
-  ]
+    {
+      "fichier": "index.html",
+      "label": "Accueil"
+    },
+    {
+      "fichier": "produits.html",
+      "label": "Nos produits"
+    },
+    {
+      "fichier": "histoire.html",
+      "label": "Notre histoire"
+    },
+    {
+      "fichier": "actualites.html",
+      "label": "Actualités"
+    },
+    {
+      "fichier": "contact.html",
+      "label": "Contact et horaires"
+    }
+  ],
+  "telephoneLien": "+33200000000",
+  "engagement": "Commandes de gâteaux : 48 h à l'avance."
 }
