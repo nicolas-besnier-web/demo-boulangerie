@@ -73,7 +73,7 @@ for (const p of produits.produits || []) {
 }
 // Chaque photo du projet doit être créditée (obligation de la page Mentions légales)
 const crediteesSet = new Set((credits.credits || []).map((c) => c.fichier));
-for (const f of readdirSync(join(ROOT, "assets", "img"))) {
+for (const f of readdirSync(join(ROOT, "assets", "img")).filter((n) => n.endsWith(".jpg"))) {
   if (!crediteesSet.has("assets/img/" + f)) echec(`credits.json : aucune mention de crédit pour assets/img/${f}`);
 }
 for (const c of credits.credits || []) {
@@ -113,12 +113,18 @@ const LOGO = `<svg viewBox="0 0 32 32" aria-hidden="true" fill="currentColor"><p
 
 // ---------- Blocs générés à partir des contenus
 const nbsp = (t) => t.replace(/ /g, "\u00a0");
-function balise(src, alt, { classe = "", lazy = true, sizes = "" } = {}) {
+// Une version réduite (assets/img/700/<même nom>) est ajoutée en srcset si elle existe : moins de données sur mobile.
+function balise(src, alt, { classe = "", lazy = true, sizes = "100vw" } = {}) {
   const t = tailleJpeg(join(ROOT, src));
   const dim = t ? ` width="${t.w}" height="${t.h}"` : "";
   const c = classe ? ` class="${classe}"` : "";
-  const sz = sizes ? ` sizes="${sizes}"` : "";
-  return `<img src="${esc(src)}" alt="${esc(alt || "")}"${dim}${c}${sz}${lazy ? ' loading="lazy" decoding="async"' : ""}>`;
+  const petit = src.replace("assets/img/", "assets/img/700/");
+  let srcset = "";
+  if (t && existsSync(join(ROOT, petit))) {
+    const p = tailleJpeg(join(ROOT, petit));
+    if (p) srcset = ` srcset="${esc(petit)} ${p.w}w, ${esc(src)} ${t.w}w" sizes="${sizes}"`;
+  }
+  return `<img src="${esc(src)}"${srcset} alt="${esc(alt || "")}"${dim}${c}${lazy ? ' loading="lazy" decoding="async"' : ""}>`;
 }
 
 function blocCartes(cat) {
@@ -127,20 +133,20 @@ function blocCartes(cat) {
   if (!liste.length) return `<p>Rien à signaler cette semaine : revenez vite nous voir.</p>`;
   return `<ul class="cartes${cat === "moment" ? " cartes-moment" : ""}">\n` + liste.map((p) => {
     const pastille = p.momentane ? `<span class="pastille">du moment</span>` : "";
-    const photo = p.image ? `<figure>${balise(p.image, p.alt)}${pastille}</figure>` : "";
+    const photo = p.image ? `<figure>${balise(p.image, p.alt, { sizes: cat === "moment" ? "(min-width: 52rem) 28vw, 90vw" : "(min-width: 64rem) 22vw, (min-width: 40rem) 45vw, 90vw" })}${pastille}</figure>` : "";
     return `      <li class="produit apparait">${photo}<div class="produit-texte"><h3 class="nom">${esc(p.nom)}</h3><span class="prix">${esc(euros.format(p.prix))}</span><p class="desc">${esc(p.description || "")}</p></div></li>`;
   }).join("\n") + `\n    </ul>`;
 }
 
 function blocJournee() {
-  return `<ol class="journee">\n` + journee.etapes.map((e) => `      <li class="etape apparait"><p class="etape-heure">${esc(nbsp(e.heure))}</p><div class="etape-texte"><h3>${esc(e.titre)}</h3><p>${esc(e.texte)}</p></div>${e.image ? `<figure class="etape-photo">${balise(e.image, e.alt)}</figure>` : ""}</li>`).join("\n") + `\n    </ol>`;
+  return `<ol class="journee">\n` + journee.etapes.map((e) => `      <li class="etape apparait"><p class="etape-heure">${esc(nbsp(e.heure))}</p><div class="etape-texte"><h3>${esc(e.titre)}</h3><p>${esc(e.texte)}</p></div>${e.image ? `<figure class="etape-photo">${balise(e.image, e.alt, { sizes: "(min-width: 52rem) 24rem, 90vw" })}</figure>` : ""}</li>`).join("\n") + `\n    </ol>`;
 }
 
 function blocGalerie() {
   const items = galerie.photos.map((p) => {
     const t = tailleJpeg(join(ROOT, p.image));
     const forme = t ? (t.h > t.w * 1.15 ? "haut" : t.w > t.h * 1.15 ? "large" : "carre") : "large";
-    return `      <li class="g-${forme} apparait"><a href="${esc(p.image)}" data-legende="${esc(p.legende || "")}" data-alt="${esc(p.alt)}">${balise(p.image, p.alt)}<span class="g-legende" aria-hidden="true">${esc(p.legende || "")}</span><span class="visuellement-cache">Agrandir la photo</span></a></li>`;
+    return `      <li class="g-${forme} apparait"><a href="${esc(p.image)}" data-legende="${esc(p.legende || "")}" data-alt="${esc(p.alt)}">${balise(p.image, p.alt, { sizes: forme === "large" ? "(min-width: 52rem) 40vw, 90vw" : "(min-width: 52rem) 20vw, 45vw" })}<span class="g-legende" aria-hidden="true">${esc(p.legende || "")}</span><span class="visuellement-cache">Agrandir la photo</span></a></li>`;
   }).join("\n");
   const croix = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>`;
   const prec = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>`;
@@ -151,7 +157,7 @@ function blocGalerie() {
       <button class="v-bouton v-fermer" type="button" aria-label="Fermer la photo">${croix}</button>
       <button class="v-bouton v-prec" type="button" aria-label="Photo précédente">${prec}</button>
       <button class="v-bouton v-suiv" type="button" aria-label="Photo suivante">${suiv}</button>
-      <figure><img alt=""><figcaption></figcaption></figure>
+      <figure><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><figcaption></figcaption></figure>
     </dialog>`;
 }
 
@@ -194,7 +200,7 @@ function blocActus(limite) {
   let liste = [...(actualites.actualites || [])].sort((a, b) => b.date.localeCompare(a.date));
   if (limite) liste = liste.slice(0, Number(limite));
   return `<ul class="actus">\n` + liste.map((a, i) => {
-    const img = a.image ? `<div class="actu-photo">${balise(a.image, a.alt, { lazy: i > 0 })}</div>` : "";
+    const img = a.image ? `<div class="actu-photo">${balise(a.image, a.alt, { lazy: i > 0, sizes: i === 0 ? "(min-width: 52rem) 60vw, 90vw" : "(min-width: 64rem) 30vw, (min-width: 52rem) 45vw, 90vw" })}</div>` : "";
     const d = new Date(a.date + "T12:00:00");
     return `      <li class="actu apparait">${img}<div class="actu-texte"><time datetime="${a.date}">${dateLongue.format(d)}</time><h2>${esc(a.titre)}</h2><p>${esc(a.texte)}</p></div></li>`;
   }).join("\n") + `\n    </ul>`;

@@ -101,7 +101,7 @@ p { margin: 0 0 1em; max-width: 66ch; text-wrap: pretty; }
 /* En-tête */
 .site-tete { border-bottom: 1px solid var(--ligne); background: var(--farine); position: relative; z-index: 20; }
 .site-tete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: var(--e3); padding-block: var(--e2); }
-.marque { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; font-family: var(--serif); font-size: 1.4rem; line-height: 1; white-space: nowrap; }
+.marque { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; font-family: var(--serif); font-size: 1.4rem; line-height: 1.15; white-space: nowrap; }
 .marque svg { width: 2rem; height: 2rem; flex: none; color: var(--croute); transition: transform 0.6s var(--ease); }
 .marque:hover svg { transform: rotate(-8deg) scale(1.08); }
 .marque small { display: block; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brun-doux); margin-top: 0.3rem; }
@@ -175,7 +175,8 @@ section { padding-block: var(--section); }
 @media (max-width: 52rem) {
   .hero-immersif { min-height: 88svh; }
   .hero-fond { object-position: 72% 50%; }
-  .tampon { width: 6.5rem; height: 6.5rem; font-size: 0.78rem; top: -3.25rem; bottom: auto; right: 0; padding: 0.7rem; }
+  .hero-contenu { position: static; }
+  .tampon { width: 6.5rem; height: 6.5rem; font-size: 0.78rem; top: 1.25rem; bottom: auto; right: var(--gutter); padding: 0.7rem; }
   .tampon b { font-size: 1.35rem; }
 }
 
@@ -355,7 +356,7 @@ html:not(.js) .visionneuse { display: none; }
 /* Pied de page */
 .site-pied { background: var(--fournil); color: var(--creme); padding-block: var(--e5) var(--e3); border-top: 1px solid rgba(243, 232, 208, 0.15); }
 .pied-grille { display: grid; grid-template-columns: 1.3fr 1fr 1.25fr 0.8fr; gap: var(--e4); }
-.site-pied h2 { font-size: 1.15rem; margin-bottom: var(--e2); color: var(--dore); }
+.site-pied h2 { font-size: 1.4rem; margin-bottom: var(--e2); color: var(--dore); }
 .site-pied p, .site-pied address { margin: 0 0 0.6rem; font-style: normal; }
 .site-pied ul { list-style: none; padding: 0; margin: 0; }
 .site-pied .marque { color: var(--farine); margin-bottom: var(--e2); }
@@ -425,3 +426,4 @@ html:not(.js) .nav a { padding: 0.55rem 0.8rem; font-size: 0.97rem; }
 .avis-sans-js { display: none; }
 html:not(.js) .avis-sans-js { display: block; }
 html:not(.js) #formulaire-contact { display: none; }
+.page-perdue { min-height: 50svh; display: grid; align-items: center; } .page-perdue h1 { max-width: 14ch; }

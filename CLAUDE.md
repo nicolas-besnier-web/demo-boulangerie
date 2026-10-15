@@ -15,6 +15,7 @@ Les pages du site sont **générées** : `node build.mjs` lit `content/*.json` e
 - `src/partials/tete.html` et `pied.html` : bandeau de démonstration, en-tête et pied de page (**un seul endroit**).
 - `src/pages/*.html` : contenu propre à chaque page, avec un en-tête `---` (title, description, `jsonld: oui` pour ajouter les données structurées Bakery).
 - Blocs utilisables dans les pages : `{{site.nom}}`, `{{site.rue}}`, `{{site.telephone}}`… (champs de `content/site.json`), `{{cartes:pains}}`, `{{cartes:moment}}` (cartes produits avec photo), `{{horaires}}`, `{{horairesCompact}}`, `{{statut}}`, `{{actus}}`, `{{journee}}` (+ `{{journee.titre}}`, `{{journee.intro}}`), `{{galerie}}` (+ `{{galerie.titre}}`, `{{galerie.intro}}`), `{{credits}}`, `{{icone:fleche}}`.
+- Images : chaque photo `assets/img/x.jpg` (1400 px) peut avoir une version réduite `assets/img/700/x.jpg` ; le build l'ajoute en `srcset` (moins de données sur mobile). Dimensions `width`/`height` lues automatiquement. `src/pages/404.html` devient la page d'erreur Netlify.
 - **Chaque photo de `assets/img/` doit avoir une entrée dans `content/credits.json`** : sinon le build échoue (les crédits sont publiés dans les mentions légales).
 - Le script valide les contenus (catégorie inconnue, heures invalides, image absente…) et **échoue avec un message clair** plutôt que de publier un site cassé.
 - Netlify : `netlify.toml` lance `node build.mjs` et publie `dist/` à chaque commit, y compris ceux de Pages CMS.
